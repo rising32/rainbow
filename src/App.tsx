@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import reactLogo from './assets/react.svg';
 import './App.css';
-import Modal from './components/modal';
+import useModal from './components/modal/useModal';
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
-
+  const { handleOpenModal } = useModal();
   const onClickButton = () => {
-    setIsOpen(true);
+    handleOpenModal({
+      type: 'first',
+      props: null,
+    });
   };
   return (
     <div className='App'>
@@ -26,14 +28,6 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
-        {isOpen && (
-          <Modal
-            open={isOpen}
-            onClose={() => {
-              setIsOpen(false);
-            }}
-          />
-        )}
       </div>
       <div>
         <a href='https://vitejs.dev' target='_blank' rel='noreferrer'>
